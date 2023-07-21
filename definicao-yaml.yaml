@@ -1,0 +1,8 @@
+DEFINIÇÃO BÁSICA YAML
+
+apiVersion: [versão do objeto]
+kind: [POD/Service/ReplicaSet/Deployment]
+metadata:
+  [dados específicos do kubernetes]
+spec:
+  [dados do tipo de objeto]

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-dp
+  labels:
+    app: webapp-app
+    type: webapp
+spec:
+  template:
+    metadata:
+      name: webapp-pod
+      labels:
+        app: webapp-app
+        type: webapp
+    spec:
+      containers:
+        - name: webapp-container
+          image: nginx
+  selector:
+    matchLabels:
+      type: webapp
+  replicas: 2
