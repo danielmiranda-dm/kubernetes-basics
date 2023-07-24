@@ -2,6 +2,7 @@
 kubectl version --client
 kubectl cluster-info
 kubectl run [pod name] --image [image name] > ex: kubectl run nginx --image --nginx. Create pod AND replicaset without YAML file
+kubectl config set-context --current --namespace=[namespace]
 
 ### READ ###
 kubectl get [resource]
@@ -18,14 +19,15 @@ kubectl create -f [file name] (--save-config > save configuration to future "app
 kubectl delete [resource] [resource name]
 kubectl replace -f [file name] > update cluster based on yaml file
 kubectl scale --replicas=x -f [file name]
+kubectl restart [pod name]
 
 ### DEPLOYMENT ###
 kubectl create -f [file name] --save-config
 							> --save-config > record configuration file, can be updated through apply
 							> --record > deprecated, replaced by annotation
-kubectl set image deployment [deployment name] [nome do container]=[imagem]
+kubectl set image deployment [deployment name] [container name]=[image]
 kubectl apply -f [file name]
-kubectl scale deployment [deployment name] --replicas=[replica number]
+kubectl scale deployment [deployment name] -n [namespace] --replicas=[replica number]
 
 kubectl annotate deployment  [deployment name]  description='[description]'
 						kubernetes.io/change-cause="[description]"
