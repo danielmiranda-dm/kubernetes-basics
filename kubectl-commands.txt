@@ -4,6 +4,10 @@ kubectl cluster-info
 kubectl run [pod name] --image [image name] > ex: kubectl run nginx --image --nginx. Create pod AND replicaset without YAML file
 kubectl config set-context --current --namespace=[namespace]
 
+### CLUSTER ###
+kubectl config current-context > cluster set in kubeconfig file
+kubectl config set-cluster [cluster name] > set new cluster in kubeconfig
+
 ### READ ###
 kubectl get [resource]
 		pods
@@ -23,8 +27,8 @@ kubectl restart [pod name]
 
 ### DEPLOYMENT ###
 kubectl create -f [file name] --save-config
-							> --save-config > record configuration file, can be updated through apply
-							> --record > deprecated, replaced by annotation
+	> --save-config > record configuration file, can be updated through apply
+	> --record > deprecated, replaced by annotation
 kubectl set image deployment [deployment name] [container name]=[image]
 kubectl apply -f [file name]
 kubectl scale deployment [deployment name] -n [namespace] --replicas=[replica number]
@@ -39,10 +43,14 @@ kubectl rollout undo deployment [deployment name]
 
 kubectl exec -it [pod name] -- bash > access container bash
 
+### EXPORT ###
+kubectl get all --all-namespaces -o yaml > cluster.yaml
+
 ---------------------------------------------------------------------------------------------
 
 ### MINIKUBE ###
 minikube delete > delete minikube cluster created on Docker
 minikube start > create minikube cluster on Docker
 minikube config set driver [docker/etc] > set default container runtime
+minikube start -p [cluster name] > create cluster with name param
 minikube service [service name] --url > gets service url:port
