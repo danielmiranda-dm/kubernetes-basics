@@ -7,6 +7,7 @@ kubectl config set-context --current --namespace=[namespace]
 ### CLUSTER ###
 kubectl config current-context > cluster set in kubeconfig file
 kubectl config set-cluster [cluster name] > set new cluster in kubeconfig
+kubectl config use-context [cluster name] > change to specified cluster
 
 ### READ ###
 kubectl get [resource]
