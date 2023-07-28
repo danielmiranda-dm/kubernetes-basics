@@ -4,4 +4,8 @@ resources:
   - ./deployments/frontend-dp.yaml
   - ./deployments/webapp.yaml
   - ./pods/mysql.yaml
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
   - ./services/frontend-svc.yaml
