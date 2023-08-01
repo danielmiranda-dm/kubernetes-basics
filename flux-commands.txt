@@ -1,0 +1,15 @@
+flux check --pre
+flux completion bash [args]
+flux bootstrap [github/git (for Azure)] --owner=$GITHUB_USER --repository=[repository name] --branch=[branch] --path=[flux file path on git] --personal
+	> Bootstrap Azure remove repository tag and add: --url=[azure url] --password=[Azure PAT]
+	> Bootstrap through HTTPS but reconcile by cloning using SSH: --password=[Azure PAT] --ssh-hosname=ssh.dev.azure.com
+	> Bootstrap SSH: --url=[ssh URL] --ssh-key-algorithm=rsa --ssh-rsa-bits=4096 --interval=1m
+flux create source git [app name] --url=[repository url] --branch=[branch] --interval=[interval ex: 1m] --export > [path. Need to be pushed to Git].yaml
+flux get kustomization --watch
+
+
+flux bootstrap github --owner=danielmiranda-dm --repository=kubernetes-basics --branch=dev --path=clusters/flux --personal
+flux create source git deployment-test --url=https://github.com/danielmiranda-dm/kubernetes-basics --branch=dev --interval=2m --export > ./clusters/flux/deploymenttest-source.yaml
+flux create kustomization deployment-test --target-namespace=default --path=".\kustomize" --prune=true --interval=30m --retry-interval=2m --health-check-timeout=3m --export > ./clusters/flux/deploymenttest-kustomization.yaml
+
+kubectl apply -f https://github.com/fluxcd/flux2/releases/latest/download/install.yaml
