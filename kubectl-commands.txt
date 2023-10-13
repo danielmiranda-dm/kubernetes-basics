@@ -53,5 +53,5 @@ kubectl get all --all-namespaces -o yaml > cluster.yaml
 minikube delete > delete minikube cluster created on Docker
 minikube start > create minikube cluster on Docker
 minikube config set driver [docker/etc] > set default container runtime
-minikube start -p [cluster name] > create cluster with name param
+minikube start -p [cluster name] -n [nodes number] > create cluster with name param and multiple nodes
 minikube service [service name] --url > gets service url:port
